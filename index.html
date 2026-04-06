@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cole Ventures — Unified Audience Intelligence Platform</title>
+<meta name="description" content="White-label audience intelligence: voice-to-audience lists, 1st-party visitor pixels, and AI agent orchestration. Partner with us.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:rgb(8,8,12);--surface:rgb(14,14,20);--surface2:rgb(22,22,32);--surface3:rgb(30,30,42);
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
+  --text:rgba(255,255,255,.92);--text2:rgba(255,255,255,.6);--text3:rgba(255,255,255,.35);
+  --accent:#6366f1;--accent2:#818cf8;--accent-glow:rgba(99,102,241,.15);
+  --green:#34d399;--green-glow:rgba(52,211,153,.12);
+  --amber:#fbbf24;--amber-glow:rgba(251,191,36,.1);
+  --rose:#f43f5e;--cyan:#22d3ee;
+  --grad-1:linear-gradient(135deg,#6366f1,#8b5cf6,#a78bfa);
+  --grad-2:linear-gradient(135deg,#34d399,#2dd4bf);
+  --grad-3:linear-gradient(135deg,#f59e0b,#f97316);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* Utility */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--accent-glow);color:var(--accent2);border:1px solid rgba(99,102,241,.2)}
+.tag-green{background:var(--green-glow);color:var(--green);border-color:rgba(52,211,153,.2)}
+.tag-amber{background:var(--amber-glow);color:var(--amber);border-color:rgba(251,191,36,.2)}
+.section{padding:100px 0;position:relative}
+.section + .section{border-top:1px solid var(--border)}
+.section-label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.15;margin-bottom:16px;letter-spacing:-.02em}
+.section-sub{font-size:18px;color:var(--text2);max-width:640px;line-height:1.7}
+
+/* Hero */
+.hero{padding:120px 0 100px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,.08) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 8px;border-radius:100px;background:var(--surface2);border:1px solid var(--border2);font-size:13px;font-weight:500;color:var(--text2);margin-bottom:32px}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:24px;background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 em{font-style:normal;background:var(--grad-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--text2);max-width:680px;margin:0 auto 48px;line-height:1.7}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:48px}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:36px;font-weight:800;letter-spacing:-.02em}
+.hero-stat .num.purple{color:var(--accent2)}
+.hero-stat .num.green{color:var(--green)}
+.hero-stat .num.amber{color:var(--amber)}
+.hero-stat .label{font-size:13px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:var(--border2)}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
+.card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.card p{color:var(--text2);font-size:14px;line-height:1.7}
+.card-accent{border-color:rgba(99,102,241,.2)}
+.card-accent::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-1)}
+.card-green{border-color:rgba(52,211,153,.15)}
+.card-green::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-2)}
+.card-amber{border-color:rgba(251,191,36,.15)}
+.card-amber::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-3)}
+
+/* Flow diagram */
+.flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin:40px 0}
+.flow-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:16px 20px;min-width:120px}
+.flow-step .icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:10px;border:1px solid var(--border2)}
+.flow-step .label{font-size:12px;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:.06em}
+.flow-step .sub{font-size:11px;color:var(--text3);margin-top:2px}
+.flow-arrow{font-size:20px;color:var(--text3);margin:0 -4px;padding-top:0}
+@media(max-width:768px){.flow{gap:8px}.flow-arrow{transform:rotate(90deg)}}
+
+/* Pricing table */
+.pricing-row{display:grid;grid-template-columns:1fr auto auto auto;gap:24px;padding:16px 24px;border-radius:10px;align-items:center;font-size:14px}
+.pricing-row:nth-child(odd){background:var(--surface)}
+.pricing-row.header{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);border-bottom:1px solid var(--border)}
+.pricing-highlight{color:var(--green);font-weight:700}
+
+/* DSP visual */
+.dsp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:24px}
+.dsp-format{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;font-size:12px;font-weight:500;color:var(--text2)}
+.dsp-format .size{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);margin-top:4px}
+.dsp-format:hover{border-color:var(--accent);color:var(--text)}
+
+/* Cross-sell */
+.cross-arrow{display:flex;align-items:center;justify-content:center;gap:12px;margin:24px 0;font-size:14px;color:var(--text3)}
+.cross-arrow .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+
+/* Unique features */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.feature{display:flex;gap:14px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.feature .bullet{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:var(--accent-glow);border:1px solid rgba(99,102,241,.15)}
+.feature .info h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature .info p{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* CTA */
+.cta-section{text-align:center;padding:100px 0;position:relative}
+.cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(99,102,241,.06) 0%,transparent 70%);pointer-events:none}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;border-radius:12px;background:var(--grad-1);color:#fff;font-size:16px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 24px rgba(99,102,241,.25)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,.35)}
+.cta-secondary{background:var(--surface2);border:1px solid var(--border2);box-shadow:none;color:var(--text);margin-left:16px}
+.cta-secondary:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(99,102,241,.1)}
+
+/* Ecosystem visual */
+.eco-center{text-align:center;margin:48px 0}
+.eco-diagram{position:relative;width:100%;max-width:700px;margin:0 auto;padding:40px 0}
+.eco-node{display:inline-flex;flex-direction:column;align-items:center;gap:8px;padding:20px 28px;background:var(--surface);border:1px solid var(--border2);border-radius:16px;position:relative;z-index:1}
+.eco-node.primary{border-color:rgba(99,102,241,.3);box-shadow:0 0 40px rgba(99,102,241,.08)}
+.eco-node .name{font-size:15px;font-weight:700}
+.eco-node .desc{font-size:11px;color:var(--text3);max-width:160px}
+.eco-connectors{display:flex;justify-content:center;gap:80px;margin:20px 0;position:relative}
+.eco-connectors::before{content:'';position:absolute;top:50%;left:25%;right:25%;height:1px;background:linear-gradient(90deg,var(--border2),var(--accent),var(--border2))}
+
+/* Partner economics */
+.econ-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}
+.econ-row:last-child{border:none}
+.econ-label{flex:1;font-size:14px;color:var(--text2)}
+.econ-value{font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace;min-width:100px;text-align:right}
+
+/* Responsive polish */
+@media(max-width:600px){
+  .hero-stats{gap:24px}
+  .hero-stat .num{font-size:28px}
+  .section{padding:64px 0}
+  .card{padding:24px}
+  .flow-step{min-width:90px;padding:12px}
+  .flow-step .icon{width:44px;height:44px;font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+<div class="container">
+  <div class="hero-badge"><span class="dot"></span> Now accepting white-label partners</div>
+  <h1>The Audience Intelligence<br>Stack You <em>White-Label</em></h1>
+  <p class="hero-sub">Three products. One data backbone. Voice-to-audience lists, 1st-party visitor pixels, and AI-orchestrated operations &mdash; all resellable under your brand at 40&ndash;50% margin.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num purple">265M</div><div class="label">US Adults Indexed</div></div>
+    <div class="hero-stat"><div class="num green">74-Col</div><div class="label">Enrichment Depth</div></div>
+    <div class="hero-stat"><div class="num amber">60%</div><div class="label">Resolution Rate</div></div>
+    <div class="hero-stat"><div class="num purple">$0</div><div class="label">Data COGS</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ============ THREE PRODUCTS ============ -->
+<section class="section">
+<div class="container">
+  <div style="text-align:center;margin-bottom:56px">
+    <div class="section-label">The Ecosystem</div>
+    <div class="section-title">Three Products, One Data Backbone</div>
+    <p class="section-sub" style="margin:0 auto">Each product stands alone. Together, they create a closed-loop audience intelligence platform no competitor can replicate.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card card-accent">
+      <div class="card-icon" style="background:var(--accent-glow);border:1px solid rgba(99,102,241,.2)">🎙️</div>
+      <span class="tag">Audience Builder</span>
+      <h3 style="margin-top:12px">ListMagic.ai</h3>
+      <p>Voice-to-audience engine. Speak your ideal customer profile into a phone &mdash; get a hyper-targeted contact list with 74 columns of enrichment, interactive data visualizations, and omnichannel activation in under 5 minutes.</p>
+    </div>
+    <div class="card card-green">
+      <div class="card-icon" style="background:var(--green-glow);border:1px solid rgba(52,211,153,.2)">📡</div>
+      <span class="tag-green">Visitor Intelligence</span>
+      <h3 style="margin-top:12px">ArkData.io</h3>
+      <p>1st-party identity resolution pixel. Install on any website, identify 60% of anonymous visitors (vs. the industry's 5&ndash;20%), and enrich every visit with the same 74-column profile. Multi-tenant, white-label ready.</p>
+    </div>
+    <div class="card card-amber">
+      <div class="card-icon" style="background:var(--amber-glow);border:1px solid rgba(251,191,36,.2)">🤖</div>
+      <span class="tag-amber">Agent Orchestration</span>
+      <h3 style="margin-top:12px">OrchestraOS</h3>
+      <p>AI agent command center. Manage fleets of Claude Code agents running parallel tasks &mdash; real-time dashboards, voice calls to your agents, tiered task routing, and autonomous operations at scale.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ LISTMAGIC FLOW ============ -->
+<section class="section" id="listmagic">
+<div class="container">
+  <div class="section-label">ListMagic.ai</div>
+  <div class="section-title">Voice &rarr; Audience &rarr; Revenue</div>
+  <p class="section-sub">The entire audience-building workflow collapses into a single voice command. No filters to click, no exports to wrangle, no integrations to configure.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="icon" style="background:var(--accent-glow);border-color:rgba(99,102,241,.25)">🎤</div>
+      <div class="label">Speak</div>
+      <div class="sub">ICP via voice or text</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.2)">🧠</div>
+      <div class="label">AI Parse</div>
+      <div class="sub">39 filters, 3,451 options</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.2)">⚡</div>
+      <div class="label">Generate</div>
+      <div class="sub">27K+ intent topics</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:var(--green-glow);border-color:rgba(52,211,153,.2)">📊</div>
+      <div class="label">Visualize</div>
+      <div class="sub">Maps, pyramids, charts</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.2)">🚀</div>
+      <div class="label">Activate</div>
+      <div class="sub">Meta, DSP, Email, CRM</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:40px">
+    <div class="card">
+      <h3>🔊 From Voice to Filters</h3>
+      <p style="margin-bottom:12px"><em>"I want everyone in Texas who searched for commercial roof repair in the last 7 days, net worth over $500K, who owns a business."</em></p>
+      <p>Claude AI maps natural language to 39 structured filters across 6 categories with 3,451+ options. No dropdown menus. No manual configuration. Just speak.</p>
+    </div>
+    <div class="card">
+      <h3>📈 Rich Data Visualization</h3>
+      <p>Every generated audience comes with interactive dashboards: population pyramids, geographic choropleths, income/net-worth distributions, phone &amp; email coverage KPIs, and post-pull B2C filtering. Exportable, embeddable, white-labelable.</p>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-top:24px">
+    <div class="card">
+      <h3>🌐 Omnichannel Activation</h3>
+      <p>Route audiences to Meta Custom Audiences (auto-synced weekly), DSP/display networks (NYT, CTV, gaming consoles), direct mail, B2B email, and LinkedIn outbound. 10&ndash;20 touchpoints per prospect per week across every channel.</p>
+    </div>
+    <div class="card">
+      <h3>🏷️ Dynamic Landing Pages</h3>
+      <p>Auto-generated, per-prospect landing pages with live audience data, interactive filter playgrounds, and white-labeled CTAs. Send a prospect a page that says: <em>"Here's everyone actually searching for what you sell."</em></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ ARKDATA PIXEL ============ -->
+<section class="section" id="arkdata">
+<div class="container">
+  <div class="section-label">ArkData.io</div>
+  <div class="section-title">Your Clients' Pixels. Your Revenue.</div>
+  <p class="section-sub">Place our identity-resolution pixel on your clients' websites. Every anonymous visitor becomes a 74-column enriched profile &mdash; and you keep 40&ndash;50% of every resolution.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="icon" style="background:var(--green-glow);border-color:rgba(52,211,153,.2)">🏷️</div>
+      <div class="label">Install Pixel</div>
+      <div class="sub">1 line of JS</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.2)">👁️</div>
+      <div class="label">Identify</div>
+      <div class="sub">5-strategy resolution</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:var(--accent-glow);border-color:rgba(99,102,241,.2)">🧬</div>
+      <div class="label">Enrich</div>
+      <div class="sub">74 columns per visitor</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.2)">📋</div>
+      <div class="label">Dashboard</div>
+      <div class="sub">Real-time visitor intel</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="icon" style="background:rgba(244,63,94,.1);border-color:rgba(244,63,94,.2)">💰</div>
+      <div class="label">Monetize</div>
+      <div class="sub">White-label SaaS</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:40px">
+    <div class="card card-green">
+      <h3>5-Strategy Identity Resolution</h3>
+      <p style="margin-bottom:16px">Where competitors rely on a single method and achieve 5&ndash;20% match rates, our cascading resolution stack hits <strong style="color:var(--green)">60%</strong>:</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="color:var(--green);font-weight:700;width:20px">1.</span><span>HEM (Hashed Email Match)</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="color:var(--green);font-weight:700;width:20px">2.</span><span>Email &rarr; Full profile lookup</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="color:var(--green);font-weight:700;width:20px">3.</span><span>Phone &rarr; Reverse enrichment</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="color:var(--green);font-weight:700;width:20px">4.</span><span>Name + Company match</span></div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="color:var(--green);font-weight:700;width:20px">5.</span><span>IP + User Agent fingerprint</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Partner Economics</h3>
+      <p style="margin-bottom:16px;color:var(--text2)">White-label pricing designed for agency margin:</p>
+      <div>
+        <div class="econ-row">
+          <div class="econ-label">Your cost per resolution</div>
+          <div class="econ-value" style="color:var(--accent2)">$0.40&ndash;0.50</div>
+        </div>
+        <div class="econ-row">
+          <div class="econ-label">Suggested resale price</div>
+          <div class="econ-value" style="color:var(--text)">$0.80&ndash;1.20</div>
+        </div>
+        <div class="econ-row">
+          <div class="econ-label">Your margin per resolution</div>
+          <div class="econ-value" style="color:var(--green)">40&ndash;60%</div>
+        </div>
+        <div class="econ-row">
+          <div class="econ-label">10 clients &times; 5K visitors/mo</div>
+          <div class="econ-value" style="color:var(--amber)">$15K&ndash;30K/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px">
+    <h3>Built for Agencies</h3>
+    <div class="grid-3" style="margin-top:16px">
+      <div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px">Multi-Tenant Hierarchy</div>
+        <p style="font-size:13px;color:var(--text2)">Parent &rarr; child tenant structure. You manage your clients. They see only their data. Full role-based access control.</p>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px">Your Brand, Your Dashboard</div>
+        <p style="font-size:13px;color:var(--text2)">White-label the entire experience. Custom domain, logo, colors. Your clients never see our name.</p>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px">API + Webhooks</div>
+        <p style="font-size:13px;color:var(--text2)">Full enrichment API for custom integrations. Bulk email &rarr; phone resolution. Webhook events for real-time CRM sync.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ ORCHESTRAOS ============ -->
+<section class="section" id="orchestraos">
+<div class="container">
+  <div class="section-label">OrchestraOS</div>
+  <div class="section-title">The Node Manager for AI Agent Fleets</div>
+  <p class="section-sub">Command dozens of AI agents from a single dashboard. OrchestraOS is the operating system for autonomous software development and business operations at scale.</p>
+
+  <div class="grid-2" style="margin-top:48px">
+    <div>
+      <h3 style="font-size:20px;font-weight:700;margin-bottom:24px">The Manager-of-Managers Model</h3>
+      <p style="color:var(--text2);margin-bottom:16px">OrchestraOS implements a <strong>tiered agent hierarchy</strong> modeled after real org charts:</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span class="tag" style="white-space:nowrap">T0</span>
+          <div><strong>General Manager</strong><br><span style="font-size:13px;color:var(--text2)">Always-on orchestrator. Routes tasks, monitors fleet health, handles escalation. Speaks to you via Telegram and voice calls.</span></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span class="tag-green" style="white-space:nowrap;display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--green-glow);color:var(--green);border:1px solid rgba(52,211,153,.2)">T1</span>
+          <div><strong>Product / Client / Infra PMs</strong><br><span style="font-size:13px;color:var(--text2)">Domain specialists that own verticals. Each PM spawns and supervises T2 workers for their area.</span></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span class="tag-amber" style="white-space:nowrap;display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--amber-glow);color:var(--amber);border:1px solid rgba(251,191,36,.2)">T2</span>
+          <div><strong>Worker Agents</strong><br><span style="font-size:13px;color:var(--text2)">Specialized executors. Each runs in an isolated tmux session with full Claude Code capabilities and dangerously-skip-permissions for autonomous operation.</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:20px;font-weight:700;margin-bottom:24px">What Makes It Unique</h3>
+      <div class="feature-grid" style="grid-template-columns:1fr">
+        <div class="feature">
+          <div class="bullet">📞</div>
+          <div class="info"><h4>Voice Calls to Your Agents</h4><p>ElevenLabs WebRTC integration. Call your GM or any PM by voice, get spoken status updates, give verbal orders.</p></div>
+        </div>
+        <div class="feature">
+          <div class="bullet">💬</div>
+          <div class="info"><h4>Chat Bubble Interface</h4><p>Real-time parsed view of each agent's terminal output as a clean chat conversation &mdash; tool calls, approvals, completions, all structured.</p></div>
+        </div>
+        <div class="feature">
+          <div class="bullet">📡</div>
+          <div class="info"><h4>Telegram + Dashboard Control</h4><p>Dispatch tasks from Telegram or the web dashboard. Agents report back through both channels. Full mobile control.</p></div>
+        </div>
+        <div class="feature">
+          <div class="bullet">🔀</div>
+          <div class="info"><h4>Cross-Machine Orchestration</h4><p>Agents span VPS and Mac machines. SSH tunneling, Tailscale networking, unified session management across hardware.</p></div>
+        </div>
+        <div class="feature">
+          <div class="bullet">⚡</div>
+          <div class="info"><h4>Live SSE Activity Feed</h4><p>Real-time event stream of every agent action, task transition, and system event. Full operational awareness at a glance.</p></div>
+        </div>
+        <div class="feature">
+          <div class="bullet">🧠</div>
+          <div class="info"><h4>Autonomous Operations</h4><p>Agents run 24/7 with failover. GM detects outages, spawns replacement agents, and re-routes tasks without human intervention.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ DSP AD GENERATION ============ -->
+<section class="section" id="dsp">
+<div class="container">
+  <div class="section-label">Ad Generation Engine</div>
+  <div class="section-title">Full-Stack DSP Campaigns in Minutes</div>
+  <p class="section-sub">Generate ad creatives across every standard format, pair them with intent-targeted audiences, and launch across the top 9 ad exchanges &mdash; all from a single workflow.</p>
+
+  <div class="card" style="margin-top:40px">
+    <h3 style="margin-bottom:8px">Supported Ad Formats</h3>
+    <p style="color:var(--text2);margin-bottom:4px">Every IAB standard size, generated and iterated on rapidly:</p>
+    <div class="dsp-grid">
+      <div class="dsp-format">Leaderboard<div class="size">728 &times; 90</div></div>
+      <div class="dsp-format">Medium Rectangle<div class="size">300 &times; 250</div></div>
+      <div class="dsp-format">Wide Skyscraper<div class="size">160 &times; 600</div></div>
+      <div class="dsp-format">Large Rectangle<div class="size">336 &times; 280</div></div>
+      <div class="dsp-format">Half Page<div class="size">300 &times; 600</div></div>
+      <div class="dsp-format">Billboard<div class="size">970 &times; 250</div></div>
+      <div class="dsp-format">Mobile Banner<div class="size">320 &times; 50</div></div>
+      <div class="dsp-format">Mobile Interstitial<div class="size">320 &times; 480</div></div>
+      <div class="dsp-format">CTV / Full Screen<div class="size">1920 &times; 1080</div></div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:24px">
+    <div class="card">
+      <h3>The Rapid Iteration Loop</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+        <div style="display:flex;gap:10px;font-size:14px"><span style="color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace">01</span><span>Pull intent audience via ListMagic voice command</span></div>
+        <div style="display:flex;gap:10px;font-size:14px"><span style="color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace">02</span><span>AI generates ad creatives across all 9 formats</span></div>
+        <div style="display:flex;gap:10px;font-size:14px"><span style="color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace">03</span><span>Push audience + creatives to DSP exchange network</span></div>
+        <div style="display:flex;gap:10px;font-size:14px"><span style="color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace">04</span><span>Ads appear on NYT, Pinterest, CTV, gaming, apps</span></div>
+        <div style="display:flex;gap:10px;font-size:14px"><span style="color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace">05</span><span>ArkData pixel captures landing page visitors</span></div>
+        <div style="display:flex;gap:10px;font-size:14px"><span style="color:var(--accent2);font-weight:700;font-family:'JetBrains Mono',monospace">06</span><span>New visitors feed back into retargeting &amp; lookalike audiences</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Where Your Ads Appear</h3>
+      <p style="color:var(--text2);margin-bottom:16px">Access to the top 9 programmatic exchanges means your creatives land on premium inventory:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">New York Times</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">Pinterest</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">Connected TV</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">Gaming Consoles</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">Tinder / Bumble</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">News &amp; Blogs</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">Mobile Apps</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">Podcasts</span>
+        <span style="font-size:12px;padding:6px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">Streaming Audio</span>
+      </div>
+      <p style="color:var(--text3);font-size:12px;margin-top:12px">Allowlist/blacklist specific sites. Set budgets by geo. Full control.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ CROSS-SELL ============ -->
+<section class="section" id="crosssell">
+<div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="section-label">Cross-Platform Flywheel</div>
+    <div class="section-title">Every Product Sells the Others</div>
+    <p class="section-sub" style="margin:0 auto">The three products create a self-reinforcing growth loop. Each client entry point naturally expands into the full stack.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card card-accent">
+      <h3 style="color:var(--accent2)">ListMagic → ArkData</h3>
+      <p style="margin-top:8px"><strong>The feedback loop.</strong> Every ListMagic client running ads or email should install an ArkData pixel to identify who actually lands on their site. Turn ad spend into identified leads. Typical uplift: <strong style="color:var(--green)">4&ndash;5x better CPL</strong> vs. running blind.</p>
+    </div>
+    <div class="card card-green">
+      <h3 style="color:var(--green)">ArkData → ListMagic</h3>
+      <p style="margin-top:8px"><strong>The expansion play.</strong> Clients seeing visitor data want to find <em>more</em> people like their best visitors. ListMagic builds lookalike audiences from ArkData profiles, then activates across Meta, DSP, and email. Recurring revenue per client: <strong style="color:var(--amber)">$5K&ndash;15K/mo</strong>.</p>
+    </div>
+    <div class="card card-amber">
+      <h3 style="color:var(--amber)">Both → OrchestraOS</h3>
+      <p style="margin-top:8px"><strong>The scale multiplier.</strong> Agencies managing 10+ clients across both platforms need automation. OrchestraOS agents handle campaign launches, audience refreshes, pixel monitoring, and reporting &mdash; turning a 3-person team into a 30-client operation.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:48px">
+    <div class="card" style="background:linear-gradient(135deg,rgba(99,102,241,.04),rgba(52,211,153,.04))">
+      <h3 style="text-align:center;margin-bottom:24px">The Unified Signal: 3rd + 1st Party Intent</h3>
+      <div class="grid-2">
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--accent2);margin-bottom:8px">3rd Party Intent (ListMagic)</div>
+          <p style="font-size:13px;color:var(--text2);line-height:1.7">"This person searched for commercial roof repair on the open web in the past 7 days." Intent scores from 70% (browsing) to 90%+ (actively comparing). Powered by 27,000+ intent topics from a 20B-signal-per-week data cooperative.</p>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--green);margin-bottom:8px">1st Party Intent (ArkData)</div>
+          <p style="font-size:13px;color:var(--text2);line-height:1.7">"This person visited YOUR pricing page twice this week and spent 4 minutes on the case studies page." Behavioral signals directly from client-owned properties. Page views, scroll depth, form attempts, repeat visits.</p>
+        </div>
+      </div>
+      <div class="cross-arrow"><div class="line"></div><span style="font-weight:700;color:var(--text);white-space:nowrap">Combined = Highest-quality leads possible</span><div class="line"></div></div>
+      <p style="text-align:center;font-size:14px;color:var(--text2)">A prospect who appears in <strong>both</strong> signals &mdash; searched for the topic <em>and</em> visited the site &mdash; is the warmest lead in the funnel. <strong style="color:var(--green)">No competitor unifies these two signals.</strong></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+<div class="container">
+  <div class="section-title">Partner With Us</div>
+  <p class="section-sub" style="margin:0 auto 40px;text-align:center">White-label the full stack or start with a single product. Wholesale pricing, multi-tenant dashboards, and your brand on everything.</p>
+  <div>
+    <a href="mailto:shaw@arkdata.io" class="cta-btn">Get Partner Pricing →</a>
+  </div>
+  <div style="margin-top:48px;display:flex;justify-content:center;gap:32px;flex-wrap:wrap">
+    <div style="text-align:center">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:4px">Audience Builder</div>
+      <div style="font-size:15px;font-weight:600">ListMagic.ai</div>
+    </div>
+    <div style="color:var(--text3)">·</div>
+    <div style="text-align:center">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:4px">Visitor Intelligence</div>
+      <div style="font-size:15px;font-weight:600">ArkData.io</div>
+    </div>
+    <div style="color:var(--text3)">·</div>
+    <div style="text-align:center">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:4px">Agent Orchestration</div>
+      <div style="font-size:15px;font-weight:600">OrchestraOS</div>
+    </div>
+  </div>
+  <p style="margin-top:48px;font-size:12px;color:var(--text3)">&copy; 2026 Cole Ventures. All data sourced from credit-bureau-validated cooperative covering 265M US adults.</p>
+</div>
+</section>
+
+</body>
+</html>
